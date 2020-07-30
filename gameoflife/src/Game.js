@@ -138,3 +138,11 @@ class Main extends React.Component {
     this.speed = 100;
     this.startBtn();
   }
+
+  clear = () => {
+    var grid = Array(this.rows).fill().map(() => Array(this.cols).fill(false)); // sets back to org array
+    this.setState({
+      gridFull: grid,
+      generation: 0
+    })
+  }
