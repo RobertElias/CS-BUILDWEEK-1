@@ -82,3 +82,18 @@ class Buttons extends React.Component {
     );
   }
 }
+
+class Main extends React.Component {
+  constructor() {
+    super();
+    this.speed = 100;
+    this.rows = 30;
+    this.cols = 50;
+
+    this.state = {
+      generation: 0,
+      gridFull: Array(this.rows)
+        .fill()
+        .map(() => Array(this.cols).fill(false)),
+    };
+  }
