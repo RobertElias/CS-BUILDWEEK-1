@@ -18,40 +18,35 @@ class Box extends React.Component {
     );
   }
 }
-class Game extends React.Component {
+class Grid extends React.Component {
+  render() {
+    const width = this.props.cols * 16;
+    var rowsArr = [];
 
-  // create the constructor
-  constructor() {
-    super();
-    this.rows = HEIGHT / CELL_SIZE;
-    this.cols = WIDTH / CELL_SIZE;
+    var boxContainer = "";
+    for (var i = 0; i < this.props.rows; i++) {
+      for (var j = 0; j < this.props.cols; j++) {
+        // you can do this with .map as well
+        let containerId = i + "_" + j;
 
-    this.board = this.makeEmptyBoard();
-}
-  //state management
-  state = {
-    cells:[],
-  }
-
-  
-  render () {
-    return (
-      <div>
-        <div>
-          {' '}{' '}{' '}{' '}{' '}{' '}{' '}{' '}
-          <div
-            className="Board"
-            style={{
-              width: WIDTH,
-              height: HEIGHT,
-              backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
-            }}
+        boxContainer = this.props.gridFull[i][j] ? "box on" : "box off"; // classes from CSS to see if boxes are on or off
+        rowsArr.push(
+          <Box
+            boxContainer={boxContainer}
+            key={containerId}
+            containerId={containerId}
+            row={i}
+            col={j}
+            // this method through two components
+            selectBox={this.props.selectBox} 
           />
-          {' '}{' '}{' '}{' '}{' '}{' '}
-        </div>
+        );
+      }
+    }
+    return (
+      <div className="grid" style={{ width: width }}>
+        {rowsArr}
       </div>
     );
   }
 }
-
-export default Game;
