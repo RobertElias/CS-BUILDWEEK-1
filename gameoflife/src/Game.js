@@ -120,3 +120,11 @@ class Main extends React.Component {
       gridFull: gridCopy,
     });
   };
+  startBtn = () => {
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(this.play, this.speed); // will create each generation on play button
+  };
+
+  stopBtn = () => {
+    clearInterval(this.intervalId);
+  };
