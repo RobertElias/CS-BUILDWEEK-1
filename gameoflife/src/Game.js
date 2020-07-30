@@ -122,7 +122,8 @@ class Main extends React.Component {
   };
   startBtn = () => {
     clearInterval(this.intervalId);
-    this.intervalId = setInterval(this.play, this.speed); // will create each generation on play button
+    // will create each generation on start button
+    this.intervalId = setInterval(this.start, this.speed); 
   };
 
   stopBtn = () => {
@@ -146,3 +147,81 @@ class Main extends React.Component {
       generation: 0
     })
   }
+  start = () => {
+    // main function 
+    let move = this.state.gridFull;
+    // this will start changing the squares, check what grid is currently like
+
+    let moves2 = arrayClone(this.state.gridFull); 
+   //Rules
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        // every elements in the grid
+        // count is how many neighbors it has
+        let count = 0; 
+        // if there is a neighbor, we increase by one.
+        // each cell has 8 potential neighbors, 
+        //you can see, there are 8 lines increasing the count
+        if (i > 0) if (move[i - 1][j]) count++;
+        if (i > 0 && j > 0) if (move[i - 1][j - 1]) count++;
+        if (i > 0 && j < this.cols - 1) if (move[i - 1][j + 1]) count++;
+        if (j < this.cols - 1) if (move[i][j + 1]) count++;
+        if (j > 0) if (move[i][j - 1]) count++;
+        if (i < this.rows - 1) if (move[i + 1][j]) count++;
+        if (i < this.rows - 1 && j > 0) if (move[i + 1][j - 1]) count++;
+        if (i < this.rows - 1 && this.cols - 1) if (move[i + 1][j + 1]) count++;
+        // decide whether it will live or die
+        // if it's dead and it has three neighbors, it becomes a live cell
+        if (move[i][j] && (count < 2 || count > 3)) moves2[i][j] = false; 
+        // if there is less than two or more than three, it dies
+        if (!move[i][j] && count === 3) moves2[i][j] = true; 
+      }
+    }
+    this.setState({
+      gridFull: moves2,
+      // we increment the generation
+      generation: this.state.generation + 1, 
+    });
+  };
+
+  componentDidMount() {
+    this.seed();
+    
+  }
+
+  render() {
+    return (
+      <div>
+        <h1 className="title">Conways Game of Life</h1>
+       
+        
+        <Grid
+        // from our state
+         // props from Grid
+          gridFull={this.state.gridFull} 
+          rows={this.rows}
+          cols={this.cols}
+          selectBox={this.selectBox}
+        />
+        <h2>Current Generation: {this.state.generation}</h2>
+         <Buttons
+          startBtn={this.startBtn}
+          stopBtn={this.stopBtn}
+          slow={this.slow}
+          fast={this.fast}
+          clear={this.clear}
+          seed={this.seed}
+          gridSize={this.gridSize}
+        />
+        
+      </div>
+    );
+  }
+}
+
+function arrayClone(arr) {
+  // This is a helper function to clone arrays to avoid changing state
+  return JSON.parse(JSON.stringify(arr)); 
+}
+
+ReactDOM.render(<Main />, document.getElementById("root"));
