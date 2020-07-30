@@ -128,3 +128,13 @@ class Main extends React.Component {
   stopBtn = () => {
     clearInterval(this.intervalId);
   };
+
+  slow = () => {
+    this.speed = 1000;
+    this.startBtn();
+  }
+
+  fast = () => {
+    this.speed = 100;
+    this.startBtn();
+  }
