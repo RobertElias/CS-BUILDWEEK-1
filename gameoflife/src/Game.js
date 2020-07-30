@@ -24,7 +24,19 @@ class Cell extends React.Component {
 }
 class Game extends React.Component {
 
+  // create the constructor
+  constructor() {
+    super();
+    this.rows = HEIGHT / CELL_SIZE;
+    this.cols = WIDTH / CELL_SIZE;
+
+    this.board = this.makeEmptyBoard();
+}
   //state management
+  state = {
+    cells:[],
+  }
+
   
   render () {
     return (
