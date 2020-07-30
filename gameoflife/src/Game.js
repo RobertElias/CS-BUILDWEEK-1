@@ -50,3 +50,35 @@ class Grid extends React.Component {
     );
   }
 }
+class Buttons extends React.Component {
+  handleSelect = (e) => {
+    this.props.gridSize(e) 
+  }
+  render() {
+    return (
+      <div className="center">
+        <ButtonToolbar>
+          <button className="btn" onClick={this.props.startBtn}>
+            Start
+          </button>
+          <button className="btn" onClick={this.props.stopBtn}>
+            Stop
+          </button>
+          <button className="btn" onClick={this.props.clear}>
+            Clear
+          </button>
+          <button className="btn" onClick={this.props.slow}>
+            Slow
+          </button>
+          <button className="btn" onClick={this.props.fast}>
+            Fast
+          </button>
+          <button className="btn" onClick={this.props.seed}>
+            Seed
+          </button>
+          
+        </ButtonToolbar>
+      </div>
+    );
+  }
+}
