@@ -89,3 +89,40 @@ class Buttons extends React.Component {
     );
   }
 }
+
+class Main extends React.Component {
+  constructor() {
+    super();
+    this.speed = 100;
+    this.rows = 30;
+    this.cols = 50;
+
+    this.state = {
+      generation: 0,
+      gridFull: Array(this.rows)
+        .fill()
+        .map(() => Array(this.cols).fill(false)),
+    };
+  }
+  // selected box is changed from false to true from the Array,
+  selectBox = (row, col) => {
+    let gridCopy = arrayClone(this.state.gridFull);
+    gridCopy[row][col] = !gridCopy[row][col]; // will turn box green when clicked, not green when clicked again
+    this.setState({
+      gridFull: gridCopy,
+    });
+  };
+  seed = () => {
+    // random generated squares at game start
+    let gridCopy = arrayClone(this.state.gridFull);
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        if (Math.floor(Math.random() * 4) === 1) {
+          gridCopy[i][j] = true;
+        }
+      }
+    }
+    this.setState({
+      gridFull: gridCopy,
+    });
+  };
