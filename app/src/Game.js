@@ -193,8 +193,7 @@ class Main extends React.Component {
     return (
       <div>
         <h1 className="title">Conways Game of Life</h1>
-       
-        
+               
         <Grid
         // from our state
          // props from Grid
@@ -204,6 +203,13 @@ class Main extends React.Component {
           selectBox={this.selectBox}
         />
         <h2>Current Generation: {this.state.generation}</h2>
+        <div className="rules">
+        <h5>RULES:</h5>
+        <p>1. Any live cell with fewer than two live neighbours dies, as if by underpopulation</p>
+        <p>2. Any live cell with two or three live neighbours lives on to the next generation</p>
+        <p>3. Any live cell with more than three live neighbours dies, as if by overpopulation</p>
+        <p>4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction</p>
+        </div>
          <Buttons
           startBtn={this.startBtn}
           stopBtn={this.stopBtn}
