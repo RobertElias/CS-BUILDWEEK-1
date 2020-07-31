@@ -236,7 +236,7 @@ class Main extends React.Component {
 }
 
 function arrayClone (arr) {
-  // This is a helper function to clone arrays to avoid changing state
+  // This is a helper function 
   return JSON.parse (JSON.stringify (arr));
 }
 
