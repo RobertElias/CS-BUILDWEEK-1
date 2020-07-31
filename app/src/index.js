@@ -196,10 +196,10 @@ class Main extends React.Component {
         
         <div className="rules">
         <h5>RULES:</h5>
-        <p>1. Any live cell with fewer than two live neighbours dies, as if by underpopulation</p>
-        <p>2. Any live cell with two or three live neighbours lives on to the next generation</p>
-        <p>3. Any live cell with more than three live neighbours dies, as if by overpopulation</p>
-        <p>4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction</p>
+        <h5>1. Any live cell with fewer than two live neighbours dies, as if by underpopulation</h5>
+        <h5>2. Any live cell with two or three live neighbours lives on to the next generation</h5>
+        <h5>3. Any live cell with more than three live neighbours dies, as if by overpopulation</h5>
+        <h5>4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction</h5>
         </div>
         <Grid
         // from our state
